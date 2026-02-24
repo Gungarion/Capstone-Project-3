@@ -1,0 +1,44 @@
+<%- include("partials/header.ejs") %>
+
+    <div class="blog-container">
+        <ul>
+            <% for(let i = (theReview.length - 1); i >= 0; i--) { %>
+            
+                <li>
+
+                    <h2>Game: <%= theReview[i].title %></h2>
+                    <div class="rate-row">
+                        <span class="rate-label">Rate:</span>
+                        <span class="stars">
+                            <%= "★" .repeat(theReview[i].rating) %>
+                            <%= "☆" .repeat(5 - theReview[i].rating) %>
+                        </span>
+                    </div>
+                    <h2>Genre: <%= theReview[i].genre %></h2>
+                    <h2>Review: </h2>
+                    <%= theReview[i].review %>
+
+                    <div class="btn-group">
+
+                        <form action="/edit/<%= theReview[i].id  %>" method="get">
+                            <button type="submit">
+                                EDIT
+                            </button>
+                        </form>
+
+                        <form action="/delete" method="post">
+                            <input type="hidden" name="id" value="<%= theReview[i].id %>">
+                            <button type="submit" onclick="return confirm('Are you sure want to delete it??')">
+                                DELETE
+                            </button>
+                        </form>
+
+                    </div>
+
+                </li>
+
+            <% } %>
+        </ul>
+    </div>
+
+<%- include("partials/footer.ejs") %>

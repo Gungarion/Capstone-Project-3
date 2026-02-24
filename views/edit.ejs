@@ -1,0 +1,61 @@
+<%- include("partials/header.ejs") %>
+
+    <form action="/edit/<%= post.id %>" method="POST">
+
+        <h2 class="edit-post-heading">Edit Post</h2>
+
+        <label for="title">
+            <h2>Title:</h2>
+        </label>
+        <input type="text" name="title" id="title" value="<%= post.title %>" placeholder="the game name" required>
+
+        <div class="rating">
+            <h2>Rating:</h2>
+            <div class="stars">
+
+                <input type="radio" id="star5" name="rating" value="5" <%=post.rating===5 ? 'checked' : '' %> required>
+                <label for="star5" aria-label="5 stars">★</label>
+
+                <input type="radio" id="star4" name="rating" value="4" <%=post.rating===4 ? 'checked' : '' %>>
+                <label for="star4" aria-label="4 stars">★</label>
+
+                <input type="radio" id="star3" name="rating" value="3" <%=post.rating===3 ? 'checked' : '' %>>
+                <label for="star3" aria-label="3 stars">★</label>
+
+                <input type="radio" id="star2" name="rating" value="2" <%=post.rating===2 ? 'checked' : '' %>>
+                <label for="star2" aria-label="2 stars">★</label>
+
+                <input type="radio" id="star1" name="rating" value="1" <%=post.rating===1 ? 'checked' : '' %>>
+                <label for="star1" aria-label="1 star">★</label>
+
+            </div>
+        </div>
+
+        <div class="genre">
+            <h2>Genre:</h2>
+            <select name="genre" required>
+                <option value="" disabled>Choose the genre</option>
+                <option value="Action" <%=post.genre==='Action' ? 'selected' : '' %>>Action</option>
+                <option value="Adventure" <%=post.genre==='Adventure' ? 'selected' : '' %>>Adventure</option>
+                <option value="RPG" <%=post.genre==='RPG' ? 'selected' : '' %>>RPG</option>
+                <option value="MMO-RPG" <%=post.genre==='MMO-RPG' ? 'selected' : '' %>>MMO-RPG</option>
+                <option value="Shooter" <%=post.genre==='Shooter' ? 'selected' : '' %>>Shooter</option>
+                <option value="Strategy" <%=post.genre==='Strategy' ? 'selected' : '' %>>Strategy</option>
+                <option value="Simulation" <%=post.genre==='Simulation' ? 'selected' : '' %>>Simulation</option>
+                <option value="Indie" <%=post.genre==='Indie' ? 'selected' : '' %>>Indie</option>
+            </select>
+        </div>
+
+        <br>
+
+        <label for="review">Review:</label>
+        <textarea name="review" id="review" required><%= post.review %></textarea>
+
+        <div class="btn-post">
+            <button type="submit">UPDATE</button>
+            <a href="/" class="btn-cancel">CANCEL</a>
+        </div>
+
+    </form>
+
+    <%- include("partials/footer.ejs") %>
